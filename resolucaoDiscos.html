@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="description" content="Ambientes de Desenvolvimento de Software">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Larissa Pereira">
+    <script>
+        function quantidadeDisco (quantidade) {
+            document.getElementById("mostraResultado").innerHTML = " ";
+            funcResolver(quantidade, 1, 3, 2);
+        }
+
+        //função recursiva: (numero de discos, pino ORIGEM A, pino DESTINO C, pino AUXILIAR B)        
+        function funcResolver(n , A, C, B) {
+            if (n == 1 ) {
+                document.getElementById("mostraResultado").innerHTML = document.getElementById("mostraResultado").innerHTML + "<br>Movimento:" + A + "-->" + C;
+                return;
+            }
+            
+           else {     
+                funcResolver(n-1, A, B, C); //usando o pino auxiliar como destino
+                document.getElementById("mostraResultado").innerHTML = document.getElementById("mostraResultado").innerHTML + "<br>Movimento:" + A + "-->" + C;
+                funcResolver(n-1, B, C, A); //e depois passando do auxiliar para o destino
+            }  
+        }
+        
+    </script>
+    </head>
+    <body style="text-align: center;">       
+        <h3>Quantidade de discos da pilha:</h3>
+        
+            <p> <input type="number" id="quantidade"> </p>
+            <p> <input type="button" value="Resultado" name="btresultado" onclick="quantidadeDisco(document.getElementById('quantidade').value)"> </p>
+            <p id="mostraResultado"></p>
+        
+    </body>
+</html>
